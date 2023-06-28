@@ -1,0 +1,3 @@
+#!/bin/bash
+git clone https://github.com/mikgroup/sigpy.git
+cd sigpy; pip install -e .; cd ..
