@@ -8,3 +8,4 @@ pwd
 ls bpt_mrpub
 
 repo2data -r binder/data_requirement.json
+cp -r data/bpt_bcg-neurolibre/data content/data
