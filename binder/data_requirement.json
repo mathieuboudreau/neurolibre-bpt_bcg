@@ -1,0 +1,6 @@
+{ 
+    "src": "https://drive.google.com/uc?id=1g3J-GC6oaxYquc296kdYaX5fLFgYM8ti",
+    "dst": "../../data",
+    "projectName": "bpt_bcg-neurolibre",
+    "recursive": true
+}
