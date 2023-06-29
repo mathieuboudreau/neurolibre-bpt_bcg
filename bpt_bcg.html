@@ -1,0 +1,1273 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wireless In-Bore Ballistocardiography with 2.4GHz Beat Pilot Tone (BPT) &#8212; My Jupyter Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'bpt_bcg';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="#">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    <p class="title logo__title">My Jupyter Book</p>
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item">
+  
+
+
+<a class="navbar-brand logo" href="#">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+    <p class="title logo__title">My Jupyter Book</p>
+  
+</a>
+    </div>
+    <div class="sidebar-start-items__item">
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Wireless In-Bore Ballistocardiography with 2.4GHz Beat Pilot Tone (BPT)
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        <label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" data-toggle="tooltip" data-placement="right" title="Toggle primary sidebar">
+            <span class="fa-solid fa-bars"></span>
+        </label>
+    </div>
+    <div class="header-article__right">
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+  </ul>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      <li><a href="_sources/bpt_bcg.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</a>
+      
+      <li>
+<button onclick="printPdf(this)"
+  class="btn btn-sm dropdown-item"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</a>
+      
+  </ul>
+</div>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary" data-toggle="tooltip" data-placement="left" title="Toggle secondary sidebar">
+            <span class="fa-solid fa-list"></span>
+        </label>
+    </div>
+</div>
+            </div>
+            
+            
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Wireless In-Bore Ballistocardiography with 2.4GHz Beat Pilot Tone (BPT)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   <strong>
+    Wireless In-Bore Ballistocardiography with 2.4GHz Beat Pilot Tone (BPT)
+   </strong>
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-cinnamon-what-is-the-bpt-font">
+   <font color="cinnamon">
+    What is the BPT?
+   </font>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-slateblue-background-the-pilot-tone-pt-font">
+     <font color="slateblue">
+      Background: the Pilot Tone (PT)
+     </font>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-slateblue-sensing-with-a-shorter-wavelength-font">
+     <font color="slateblue">
+      Sensing with a shorter wavelength
+     </font>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-slateblue-how-does-the-bpt-work-font">
+     <font color="slateblue">
+      How does the BPT work?
+     </font>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#processing-the-data">
+   Processing the data
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-and-import-packages">
+     Install and import packages
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extract-all-data-and-generate-plots">
+     Extract all data and generate plots
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extract-the-bpt">
+     Extract the BPT
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extract-accelerometer-data">
+     Extract accelerometer data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-regression-to-compare-bpt-and-dbcg">
+     Linear regression to compare BPT and dBCG
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-physio-data">
+     Load physio data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#putting-it-all-together">
+     Putting it all together
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+            <article class="bd-article" role="main">
+              
+  <div class="tex2jax_ignore mathjax_ignore section" id="wireless-in-bore-ballistocardiography-with-2-4ghz-beat-pilot-tone-bpt">
+<h1><strong>Wireless In-Bore Ballistocardiography with 2.4GHz Beat Pilot Tone (BPT)</strong><a class="headerlink" href="#wireless-in-bore-ballistocardiography-with-2-4ghz-beat-pilot-tone-bpt" title="Permalink to this heading">#</a></h1>
+<p><strong>Authors:</strong> Suma Anand<sup>1</sup>, Michael Lustig<sup>1</sup></p>
+<p><sup>1</sup> University of California, Berkeley</p>
+<p>Author of this demo: <a class="reference external" href="https://people.eecs.berkeley.edu/~sanand/">Suma Anand</a>, <a class="reference external" href="mailto:sanand&#37;&#52;&#48;berkeley&#46;edu">sanand<span>&#64;</span>berkeley<span>&#46;</span>edu</a></p>
+<p>ISMRM 2023 Abstract, Program #0756</p>
+<p><font color='cinnamon'> <strong>Note: If you just want to try out the code, skip to the “Processing the data” section!</strong> </font></p>
+<p>Also, this notebook looks best if you select the “dark” theme: go to settings in the top right &gt; Theme &gt; select dark from the dropdown.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h1>
+<p>In this abstract, we show that we can sense a <em>ballistocardiogram</em> (BCG) using a microwave Radio Frequency (RF) sensor called the <font color='slateblue'> <strong>Beat Pilot Tone (BPT)</strong> </font>. BCG senses the vibrations of the body due to blood pulsing through it: like the recoil from shooting a gun, your whole body recoils from the ballistic forces of blood through the aorta! BCGs can measure acceleration, velocity, or displacement. A sample measurement setup might look like this:</p>
+<center> <img src="https://drive.google.com/uc?export=view&id=171KzF2WLJZbwk47itjdtYkNDNQVUBM5D" width="350"class="center"></center>
+<p>What’s cool about this abstract is that we sense BCG <strong>without putting any additional hardware on the subject</strong>. We place a transmit antenna inside the bore, far away from the subject, and sense the BCG using the MRI receiver coil array. Our setup looks like this, where “BPT Tx” is the BPT transmit antenna in light purple. Note that “PT Tx” is an additional transmit antenna for a method called the Pilot Tone, which we describe in the next section.</p>
+<center> <img src="https://drive.google.com/uc?export=view&id=17YGckw1FPrr23mj8gBksj9G1iAZmjDsd" width="500"class="center"></center>
+<p>Specifically, we hypothesize that we measure <em>displacement</em> BCG (dBCG).  To see if it really is BCG that we’re measuring, we take another simultaneous BCG measurement using an accelerometer (see figure above). We integrate acceleration twice to get displacement (with some high-pass filtering first). Then, we compare the resulting dBCG signal to our BPT sensor, along with a few other sensor signals like electrocardiogram (ECG) and photoplethysmogram (PPG).</p>
+<p>Let’s dive into how it’s done!</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="font-color-cinnamon-what-is-the-bpt-font">
+<h1><font color='cinnamon'> What is the BPT? </font><a class="headerlink" href="#font-color-cinnamon-what-is-the-bpt-font" title="Permalink to this heading">#</a></h1>
+<div class="section" id="font-color-slateblue-background-the-pilot-tone-pt-font">
+<h2><font color='slateblue'> Background: the Pilot Tone (PT) </font><a class="headerlink" href="#font-color-slateblue-background-the-pilot-tone-pt-font" title="Permalink to this heading">#</a></h2>
+<p>To understand this abstract, we first need to understand what the Beat Pilot Tone (BPT) sensor is. The BPT builds off of another RF sensor called the Pilot Tone (PT), which was first proposed by Peter Speier from Siemens in 2015. The idea is similar to continuous wave radar. The idea of the PT is to transmit an RF tone (the Pilot Tone) continuously that’s slightly offset from the Larmor frequency but still within the bandwidth of the receiver coils.  This tone then interacts with the person and is sensed by the coils, so it appears alongside the image. Whenever the person moves, the RF wave changes slightly and alters the signal level of the Pilot Tone. With just an additional transmitter in or near the bore, you can get motion signals “for free” with the MR images!</p>
+<p>Let’s look in more detail at how the PT works. MR images generally have a bit of extra space at the end. Since the image readout axis corresponds to frequency, it means that we have some <strong>unused bandwidth</strong>, like in the image below (note that the frequency or readout axis is the vertical axis here):</p>
+<center> <img src="https://drive.google.com/uc?export=view&id=1BusmcSPy3-AvkaNcIt8-Xfv0hoPGxKOr" width="400"class="center"></center>
+<p>The blank space with red boxes around it is the extra bandwidth that isn’t covered by any anatomy.</p>
+<p>To implement the Pilot Tone, we transmit an RF tone that corresponds to the frequency of that empty space: usually, a few 10s of kHz away from the Larmor frequency. In our GE 3T MR750W system, the Larmor frequency is 127.7MHz, so we can pick a frequency of 127.8MHz such that it’s still within the overall receiver bandwidth, but will appear at the edge of the image.</p>
+<p>The resulting image with the PT on will look like this:</p>
+<center> <img src="https://drive.google.com/uc?export=view&id=1jk4zVtz8EwB6-SsnIJUyEQdb5KEgeRDf" width="400"class="center"></center>
+<p>Note that this is also called a “zipper artifact”, and has historically been an unwanted source of RF interference! This time, we’re creating a zipper artifact on purpose to sense motion.</p>
+<p>The problem, though, is that the PT must be in the receiver bandwidth. For us, this means that it should be roughtly 127.7MHz +/- 125kHz. A 127.8MHz RF wave has a wavelength of 2.3m. That’s longer than the subject!</p>
+</div>
+<div class="section" id="font-color-slateblue-sensing-with-a-shorter-wavelength-font">
+<h2><font color='slateblue'>  Sensing with a shorter wavelength </font><a class="headerlink" href="#font-color-slateblue-sensing-with-a-shorter-wavelength-font" title="Permalink to this heading">#</a></h2>
+<p>What if we could use a shorter wavelength RF and get better sensitivity to motion that way? For instance, radars can operate at microwave frequences like 2.4GHz. However, if we built a radar, we’d also have to build our own receiver system (and synchronize it to the MRI, and place it inside, and deal with cabling, etc…). Instead, we play a neat trick: we make use of <strong>intermodulation</strong>. Intermodulation is a property of nonlinear elements, like amplifiers. It mixes frequencies: if you transmit two tones at frequency f<sub>1</sub> and f<sub>2</sub>, you receive an <strong>intermodulation product</strong> at frequency f<sub>2</sub> - f<sub>1</sub>. We’ll make use of this!</p>
+<p>Like the figure below shows, we transmit two tones at frequencies f<sub>1</sub> and f<sub>2</sub> such that f<sub>2</sub> - f<sub>1</sub> = 127.8MHz. That way, the intermodulation product is now within the receiver bandwidth and gets processed by the receiver chain.</p>
+<center> <img src="https://drive.google.com/uc?export=view&id=1uOzDY5wOPo1OZed9gO-4dnnae-1UMX7N" width="400"class="center"></center>
+<p>If we have a receiver coil array (as is standard now in MRI suites), we get one BPT for each coil. In that way, we can get spatial information from multiple coils! Note that the intermodulation happens inside the preamp. The coils sense the electromagnetic fields, i.e., voltage is induced in the coils by the fields at the two frequencies, and these voltages are then mixed to create the intermodulation product that is sensed.</p>
+<center> <img src="https://drive.google.com/uc?export=view&id=1FgRJyVCtYsVsTZorFajgS6puzzzQDJv4" width="500"class="center"></center>
+<p>The BPT appears exactly the same as the PT: a line in the image. But unlike the PT, we now have free choice of these frequencies, and instead of sensing the frequency directly, we sense its intermodulation product.</p>
+<p>You can check out our <a class="reference external" href="https://index.mirasmart.com/ISMRM2021/PDFfiles/0568.html">original abstract</a> from ISMRM 2021 for more details.</p>
+</div>
+<div class="section" id="font-color-slateblue-how-does-the-bpt-work-font">
+<h2><font color='slateblue'>  How does the BPT work? </font><a class="headerlink" href="#font-color-slateblue-how-does-the-bpt-work-font" title="Permalink to this heading">#</a></h2>
+<p>It turns out that using microwave RF (like 2.4GHz) causes some interesting effects in the bore. Conventional superconducting MRI scanners have a cylindrical bore. The bore and whatever’s inside it (i.e., the human subject) act as a <strong>waveguide</strong>, in which RF can propagate! In fact, if the RF that is transmitted has a frequency greater than the cutoff frequency of the waveguide, you see interesting <strong>standing wave patterns</strong> start to emerge, like in the magnetic field simulation below:</p>
+<center> <img src="https://drive.google.com/uc?export=view&id=1_rZ4k9IbSjYr1_eLgJ5QWybJu2T3mm-D" width="500"class="center"></center>
+<p>This is a finite-element electromagnetic field simulation which simulates the field in the bore due to a transmit antenna at the top at 127.8MHz (left) and 2.4GHz (right). 127.8MHz is below the cutoff of the waveguide, so it simply falls off in strength as you move away from the transmitter. The behavior at 2.4GHz, however, is more complicated: there appear to be patterns of peaks and nulls that vary over space. This simulation just has air inside the bore, but if you were to add a body inside, you would also see patterns.</p>
+<p>Every time you move inside the bore, you cause the standing wave patterns to change. <font color='cinnamon'> <strong>We hypothesize that the BPT samples these standing wave patterns, and that’s what makes it very sensitive to small motions.</strong> </font></p>
+<p>In this abstract, we show an example of the kinds of small motions the BPT can pick up in a way that the PT cannot: namely, a ballistocardiogram. We show that the BPT can pick up small displacements of the body due to the pulsation of blood. It can even do this when the transmit antenna is placed far away from the subject!</p>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="processing-the-data">
+<h1>Processing the data<a class="headerlink" href="#processing-the-data" title="Permalink to this heading">#</a></h1>
+<div class="section" id="install-and-import-packages">
+<h2>Install and import packages<a class="headerlink" href="#install-and-import-packages" title="Permalink to this heading">#</a></h2>
+<p>First, let’s install sigpy, a signal processing library that we’ll use for some of our code, and ipympl so that we can use the matplotlib widget backend.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install sigpy --quiet</span>
+<span class="c1">#!pip install ipympl --quiet</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s import the rest of the modules we’ll need.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For data processing</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">sigpy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">find_peaks</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">lsq_linear</span>
+<span class="kn">import</span> <span class="nn">scipy.integrate</span> <span class="k">as</span> <span class="nn">integ</span>
+
+<span class="c1"># For plotting</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span><span class="c1"># Enable matplotlib widgets</span>
+<span class="c1">#from google.colab import output</span>
+<span class="c1">#output.enable_custom_widget_manager()</span>
+
+<span class="c1"># For downloading data in zipfile format</span>
+<span class="kn">import</span> <span class="nn">gdown</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+
+<span class="c1"># Custom modules from git repo</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;bpt_mrpub&quot;</span><span class="p">):</span>
+  <span class="o">!</span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mikgroup/bpt_mrpub.git
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;bpt_mrpub&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">cfl</span> <span class="c1"># For data I/O, use cfl format from BART</span>
+<span class="kn">import</span> <span class="nn">processing</span> <span class="k">as</span> <span class="nn">proc</span>
+<span class="kn">import</span> <span class="nn">plotting</span> <span class="k">as</span> <span class="nn">plot</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also update the default matplotlib parameters for nicer plotting.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;axes.spines.right&#39;</span><span class="p">:</span><span class="kc">False</span><span class="p">,</span>
+                     <span class="s1">&#39;axes.spines.left&#39;</span><span class="p">:</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="s1">&#39;axes.spines.top&#39;</span><span class="p">:</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="s1">&#39;axes.titlesize&#39;</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span>
+                    <span class="s1">&#39;axes.labelsize&#39;</span><span class="p">:</span><span class="mi">16</span><span class="p">,</span>
+                    <span class="s1">&#39;font.size&#39;</span><span class="p">:</span><span class="mi">16</span><span class="p">,</span>
+                    <span class="s1">&#39;legend.fontsize&#39;</span><span class="p">:</span><span class="mi">16</span><span class="p">,</span>
+                    <span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">:</span><span class="mi">14</span><span class="p">,</span>
+                    <span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">:</span><span class="mi">14</span><span class="p">,</span>
+                     <span class="s1">&#39;lines.linewidth&#39;</span><span class="p">:</span><span class="mi">2</span>
+                    <span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="extract-all-data-and-generate-plots">
+<h2>Extract all data and generate plots<a class="headerlink" href="#extract-all-data-and-generate-plots" title="Permalink to this heading">#</a></h2>
+<p>If you just want to run some code and see all the plots at once, run the cells below, which extract the data and generate all the plots. You can additionally go through each of the sections below, which explain the processing steps. All the processing and plotting code is in <code class="docutils literal notranslate"><span class="pre">processing.py</span></code> and <code class="docutils literal notranslate"><span class="pre">plotting.py</span></code>, respectively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the data</span>
+<span class="c1">#url = &#39;https://drive.google.com/uc?id=1g3J-GC6oaxYquc296kdYaX5fLFgYM8ti&#39;</span>
+<span class="c1">#output = &#39;data.zip&#39;</span>
+<span class="c1">#gdown.download(url, output, quiet=False)</span>
+<span class="c1"># Extract data to directory</span>
+<span class="c1">#with zipfile.ZipFile(&quot;data.zip&quot;,&quot;r&quot;) as zip_ref:</span>
+<span class="c1">#    zip_ref.extractall()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot data for a single subject</span>
+<span class="n">inpdirs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;data/subj1&quot;</span><span class="p">]</span>
+<span class="c1"># Uncomment the line below to run the plots for both subjects</span>
+<span class="c1"># inpdirs = [&quot;data/subj1&quot;, &quot;data/subj2&quot;]</span>
+
+<span class="n">ecg_indices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ecg_scales</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">cutoff</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">inpdir</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">inpdirs</span><span class="p">):</span>
+    <span class="c1"># Choose appropriate coils</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">c_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">14</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">],[</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span> <span class="o">+</span> <span class="mi">16</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span><span class="mi">24</span><span class="p">]</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">c_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">14</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">12</span><span class="p">],[</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">]])</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span><span class="mi">12</span><span class="p">]</span>
+
+    <span class="c1"># Load data</span>
+    <span class="n">bpt</span><span class="p">,</span> <span class="n">ecg</span><span class="p">,</span> <span class="n">ppg</span><span class="p">,</span> <span class="n">accel_d</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">inpdir</span><span class="p">,</span> <span class="n">ecg_indices</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cutoff</span><span class="p">)</span>
+
+    <span class="c1"># Plot bpt vs pt</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">plot_bpt_pt</span><span class="p">(</span><span class="n">bpt</span><span class="p">,</span> <span class="n">c_mat</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Raw BPT vs PT Magnitude, Subj </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="c1"># Plot BPT vs accel</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">plot_bpt_accel</span><span class="p">(</span><span class="n">bpt</span><span class="p">,</span> <span class="n">accel_d</span><span class="p">,</span> <span class="n">ecg</span><span class="p">,</span> <span class="n">ppg</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">shift</span><span class="o">=-</span><span class="mi">8</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">ecg_scale</span><span class="o">=</span><span class="n">ecg_scales</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;BPT vs peripherals, Subj </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="c1"># Plot regressed BPT vs accel</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">plot_dbcg</span><span class="p">(</span><span class="n">bpt</span><span class="p">,</span> <span class="n">accel_d</span><span class="p">,</span> <span class="n">tr</span><span class="o">=</span><span class="mf">8.7e-3</span><span class="p">,</span> <span class="n">t_end</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;BPT vs dBCG, Subj </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/8c0a22a1282fda19f0bd126fef1640d36506c94444b252f08904437da9593d2d.png" src="_images/8c0a22a1282fda19f0bd126fef1640d36506c94444b252f08904437da9593d2d.png" />
+<img alt="_images/1972cea8ab83451f4467801a1eb631f196f2171d8e4382e51cc881678178a7e4.png" src="_images/1972cea8ab83451f4467801a1eb631f196f2171d8e4382e51cc881678178a7e4.png" />
+<img alt="_images/f063841430bc4944cf496117426f4c561e0a2f9d7b38439d334f0546f673e392.png" src="_images/f063841430bc4944cf496117426f4c561e0a2f9d7b38439d334f0546f673e392.png" />
+</div>
+</div>
+</div>
+<div class="section" id="extract-the-bpt">
+<h2>Extract the BPT<a class="headerlink" href="#extract-the-bpt" title="Permalink to this heading">#</a></h2>
+<p>If we run the ls bash command, we can see what’s in the data folder. We acquired data on two subjects, with a folder containing the data for each one.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls<span class="w"> </span>data
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>subj1  subj2
+</pre></div>
+</div>
+</div>
+</div>
+<p>First, let’s extract the BPT from subject 1. We acquired a series of 2D images with gradients and RF excitation off (which is why there is no actual MR image). The kspace is of size <code class="docutils literal notranslate"><span class="pre">[nro,</span> <span class="pre">npe,</span> <span class="pre">nframes,</span> <span class="pre">ncoils]</span></code>, corresponding to the number of readout points, phase encodes, frames, and receiver coils.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define directories</span>
+<span class="n">main_dir</span> <span class="o">=</span> <span class="s2">&quot;data&quot;</span>
+<span class="n">subj1_dir</span> <span class="o">=</span> <span class="s2">&quot;subj1&quot;</span>
+
+<span class="c1"># Load the kspace data</span>
+<span class="n">inpdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">main_dir</span><span class="p">,</span> <span class="n">subj1_dir</span><span class="p">)</span>
+<span class="n">ksp</span> <span class="o">=</span> <span class="n">cfl</span><span class="o">.</span><span class="n">readcfl</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">inpdir</span><span class="p">,</span> <span class="s2">&quot;ksp&quot;</span><span class="p">))</span> <span class="c1"># [nro, npe, nframes, ncoils]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we take a Fourier transform along the readout direction and plot a single line of the magnitude kspace, we can see two peaks. These correspond to the PT (127.6MHz) and the BPT (2.4GHz/2.5278GHz). The PT was transmitted simultaneously using a separate antenna.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ksp_f</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">ksp</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,))</span> <span class="c1"># Take IFFT along readout direction</span>
+<span class="n">nro</span><span class="p">,</span> <span class="n">npe</span><span class="p">,</span> <span class="n">nframes</span><span class="p">,</span> <span class="n">ncoils</span> <span class="o">=</span> <span class="n">ksp_f</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="mi">250</span> <span class="c1"># Readout bandwidth, kHz</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">nro</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">nro</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">fs</span><span class="o">/</span><span class="n">nro</span>
+
+<span class="c1"># Update plot params to show the y-axis as a solid line</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;axes.spines.left&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="p">})</span>
+
+<span class="c1"># Plot for the first 10 phase encodes</span>
+<span class="n">npe_plot</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ksp_f</span><span class="p">[:,:</span><span class="n">npe_plot</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;f [kHz]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Amplitude (a.u.)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;F(ksp) for the first </span><span class="si">{}</span><span class="s2"> kspace lines&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">npe_plot</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;F(ksp) for the first 10 kspace lines&#39;)
+</pre></div>
+</div>
+<img alt="_images/419c264a2be84bf69e8e4794812eea789f75d1d8497d1ec4721570e70e2ded93.png" src="_images/419c264a2be84bf69e8e4794812eea789f75d1d8497d1ec4721570e70e2ded93.png" />
+</div>
+</div>
+<p>To extract the two BPTs, let’s find the peaks in <code class="docutils literal notranslate"><span class="pre">ksp_f</span></code> and extract the values at the peaks. We obtain one sample per TR.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_bpt</span><span class="p">(</span><span class="n">ksp</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+  <span class="c1"># Take IFFT along readout direction</span>
+  <span class="n">ksp_f</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">ksp</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,))</span>
+  <span class="n">nro</span><span class="p">,</span> <span class="n">npe</span><span class="p">,</span> <span class="n">nframes</span><span class="p">,</span> <span class="n">ncoils</span> <span class="o">=</span> <span class="n">ksp_f</span><span class="o">.</span><span class="n">shape</span>
+
+  <span class="c1"># Find peaks by taking root sum square over dimensions other than readout</span>
+  <span class="c1"># Peaks are extracted if they are greater than the threshold</span>
+  <span class="n">ksp_f_rss</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">rss</span><span class="p">(</span><span class="n">ksp_f</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+  <span class="n">ksp_f_rss</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">ksp_f_rss</span><span class="p">)</span>
+  <span class="n">peaks</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">find_peaks</span><span class="p">(</span><span class="n">ksp_f_rss</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">)</span>
+
+  <span class="c1"># Extract BPT at those locations</span>
+  <span class="n">bpt</span> <span class="o">=</span> <span class="n">ksp_f</span><span class="p">[</span><span class="n">peaks</span><span class="p">,</span><span class="o">...</span><span class="p">]</span> <span class="c1"># First dim is the number of BPTs</span>
+
+  <span class="c1"># Reshape the BPT to be of size [nbpts, npe*nframes, ncoils]</span>
+  <span class="n">bpt_r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">bpt</span><span class="p">,</span> <span class="p">(</span><span class="n">peaks</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">npe</span><span class="o">*</span><span class="n">nframes</span><span class="p">,</span> <span class="n">ncoils</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;F&quot;</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="n">bpt_r</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can extract and plot the raw PT and BPT, respectively. You can immediately see that the raw signals are quite different in signal shape!</p>
+<p>You also may notice that the PT is much stronger (i.e., has a higher signal level) compared to the BPT - in my experiments, I had to increase the PT strength to be able to see any cardiac signal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract PT and BPT</span>
+<span class="n">bpt</span> <span class="o">=</span> <span class="n">get_bpt</span><span class="p">(</span><span class="n">ksp</span><span class="p">)</span>
+
+<span class="c1"># Define a time axis</span>
+<span class="n">tr</span> <span class="o">=</span> <span class="mf">8.7e-3</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">bpt</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">tr</span>
+
+<span class="c1"># Plot</span>
+<span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Raw PT&quot;</span><span class="p">,</span> <span class="s2">&quot;Raw BPT&quot;</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bpt</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">bpt</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="o">...</span><span class="p">]))</span>
+  <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">bpt</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="c1"># t label only for the second subplot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;t[s]&quot;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Magnitude (a.u)&quot;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span> <span class="c1"># First 10 seconds of data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3c56747920eaaf44b2efd5f3bc5c7dfe8a47918de4326e2851324cdebb32e25d.png" src="_images/3c56747920eaaf44b2efd5f3bc5c7dfe8a47918de4326e2851324cdebb32e25d.png" />
+</div>
+</div>
+</div>
+<div class="section" id="extract-accelerometer-data">
+<h2>Extract accelerometer data<a class="headerlink" href="#extract-accelerometer-data" title="Permalink to this heading">#</a></h2>
+<p>We acquired data simultaneously with an accelerometer that was placed on the subject’s chest (see Overview). Let’s now extract the data from the accelerometer. It’s stored as a text file that is written by an Arduino. We can do it using the function below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_accel_data</span><span class="p">(</span><span class="n">inpdir</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Load accelerometer data from file &#39;&#39;&#39;</span>
+    <span class="c1"># Load fname as file that starts with &#39;data&#39;</span>
+    <span class="k">if</span> <span class="n">fname</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">inpdir</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">)][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">inpdir</span><span class="p">,</span><span class="n">fname</span><span class="p">))</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">accel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+    <span class="k">return</span> <span class="n">accel</span><span class="p">[</span><span class="mi">1</span><span class="p">:,:]</span> <span class="c1"># Return in the same shape as BPT</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accel</span> <span class="o">=</span> <span class="n">get_accel_data</span><span class="p">(</span><span class="n">inpdir</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accel data shape = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accel</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accel data shape = (4200, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can compute displacement by high pass filtering the data, then integrating it. We have to high pass filter so that we remove any drift from the data, which is amplified by the integration operation. We’ll use the helper function <code class="docutils literal notranslate"><span class="pre">dbl_int</span></code>, which does the double integration.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dbl_int</span><span class="p">(</span><span class="n">accel</span><span class="p">,</span> <span class="n">tr</span><span class="o">=</span><span class="mf">8.7e-3</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">get_v</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Double integrate acceleration -&gt; displacement &#39;&#39;&#39;</span>
+    <span class="c1"># Apply high pass filter to accelerometer signal</span>
+    <span class="n">accel_filt</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">filter_sig</span><span class="p">(</span><span class="n">accel</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="n">cutoff</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">tr</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">btype</span><span class="o">=</span><span class="s1">&#39;high&#39;</span><span class="p">)</span>
+    <span class="c1"># Compute velocity</span>
+    <span class="n">accel_v</span> <span class="o">=</span> <span class="n">integ</span><span class="o">.</span><span class="n">cumtrapz</span><span class="p">(</span><span class="n">accel_filt</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">tr</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># Remove the mean before integrating again</span>
+    <span class="n">accel_d</span> <span class="o">=</span> <span class="n">integ</span><span class="o">.</span><span class="n">cumtrapz</span><span class="p">(</span><span class="n">proc</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">accel_v</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">dx</span><span class="o">=</span><span class="n">tr</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">get_v</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span> <span class="c1"># Return velocity and displacement</span>
+        <span class="k">return</span> <span class="n">accel_d</span><span class="p">,</span> <span class="n">accel_v</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">accel_d</span> <span class="c1"># Return just displacement</span>
+
+<span class="k">def</span> <span class="nf">get_accel_d</span><span class="p">(</span><span class="n">accel</span><span class="p">,</span> <span class="n">tr</span><span class="o">=</span><span class="mf">8.7e-3</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">get_v</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Get integrated acceleration -&gt; displacement for all axes &#39;&#39;&#39;</span>
+    <span class="n">accel_d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">accel</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">3</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">get_v</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># Optionally get velocity</span>
+        <span class="n">accel_v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">accel</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">3</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">accel_d</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">d</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">dbl_int</span><span class="p">(</span><span class="n">accel</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span> <span class="n">tr</span><span class="o">=</span><span class="n">tr</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="n">cutoff</span><span class="p">,</span> <span class="n">get_v</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">accel_d</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span>
+            <span class="n">accel_v</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+        <span class="k">return</span> <span class="n">accel_d</span><span class="p">,</span> <span class="n">accel_v</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Get displacement</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">accel_d</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">accel_d</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dbl_int</span><span class="p">(</span><span class="n">accel</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span> <span class="n">tr</span><span class="o">=</span><span class="n">tr</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="n">cutoff</span><span class="p">,</span> <span class="n">get_v</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">accel_d</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The acceleration is in units of g. We’ll display displacement in arbitrary units, with a vertical shift between each of the three axes so that you can see the signal clearly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cutoff</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1"># Hz</span>
+<span class="n">accel_d</span> <span class="o">=</span> <span class="n">get_accel_d</span><span class="p">(</span><span class="n">accel</span><span class="p">,</span> <span class="n">tr</span><span class="o">=</span><span class="n">tr</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="n">cutoff</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">accel_d</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">tr</span>
+
+<span class="c1"># Plot the accelerometer data with a vertical shift between each axis</span>
+<span class="n">shift</span> <span class="o">=</span> <span class="o">-</span><span class="mf">5e-6</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">accel_d</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">shift</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="s2">&quot;y&quot;</span><span class="p">,</span><span class="s2">&quot;z&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time (s)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Displacement (a.u.)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Displacement measured by accelerometer&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Displacement measured by accelerometer&#39;)
+</pre></div>
+</div>
+<img alt="_images/30683232e6306156e1f574c1bc1ae166e123d395f1d58f9753c34b07a531459c.png" src="_images/30683232e6306156e1f574c1bc1ae166e123d395f1d58f9753c34b07a531459c.png" />
+</div>
+</div>
+</div>
+<div class="section" id="linear-regression-to-compare-bpt-and-dbcg">
+<h2>Linear regression to compare BPT and dBCG<a class="headerlink" href="#linear-regression-to-compare-bpt-and-dbcg" title="Permalink to this heading">#</a></h2>
+<p>The BPT data contains signals from multiple coils. To compare the BPT quantitatively to dBCG, we regressed the multi-coil BPT signal to each of the computed displacements (x, y, and z), i.e. we found a linear combination of BPT signals that most closely matched the accelerometer dBCG. We did this by a least-squares fit using <code class="docutils literal notranslate"><span class="pre">lsq_linear</span></code> from scipy.optimize. The function <code class="docutils literal notranslate"><span class="pre">get_bpt_d</span></code> computes the fit, with <code class="docutils literal notranslate"><span class="pre">lin_comb</span></code> as a helper function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_bpt_d</span><span class="p">(</span><span class="n">accel_d</span><span class="p">,</span> <span class="n">bpt_inp</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Find coefficients to linearly combine BPT to match displacement&#39;&#39;&#39;</span>
+    <span class="n">bpt_d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">accel_d</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">accel_d</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">accel_inp</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">accel_d</span><span class="p">[:,</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">opt_vals</span> <span class="o">=</span> <span class="n">lsq_linear</span><span class="p">(</span><span class="n">bpt_inp</span><span class="p">,</span> <span class="n">accel_inp</span><span class="p">)</span>
+        <span class="n">bpt_d</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">lin_comb</span><span class="p">(</span><span class="n">opt_vals</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">bpt_inp</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">bpt_d</span>
+
+<span class="k">def</span> <span class="nf">lin_comb</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">accel_d</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Take linear combination of elements in accel_d with coefficents in x&#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">accel_d</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">accel_d</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, we’ll compute the regression and plot it for each axis. The linearly combined BPTs are denoted by “BPT-dBCG-[axis]” for axes x,y, and z. The accelerometer displacement is just called “dBCG-[axis]”. The axes x, y, and z correspond to superior/inferior, left/right, and anterior/posterior.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove mean from input</span>
+<span class="n">bpt_inp</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">normalize_c</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">bpt</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">...</span><span class="p">]))</span>
+<span class="n">accel_inp</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">normalize_c</span><span class="p">(</span><span class="n">accel_d</span><span class="p">)</span>
+
+<span class="c1"># Compute linear fit</span>
+<span class="n">bpt_d</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">get_bpt_d</span><span class="p">(</span><span class="n">accel_inp</span><span class="p">,</span> <span class="n">bpt_inp</span><span class="p">)</span>
+
+<span class="c1"># Filter</span>
+<span class="n">bpt_filt</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">filter_c</span><span class="p">(</span><span class="n">bpt_d</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">tr</span><span class="o">=</span><span class="n">tr</span><span class="p">)</span>
+
+<span class="c1"># Plot regressed BPT with vertical shift</span>
+<span class="n">shift</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">proc</span><span class="o">.</span><span class="n">normalize_c</span><span class="p">(</span><span class="n">bpt_filt</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">shift</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;BPT-dBCG-</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span> <span class="k">for</span> <span class="n">axis</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="s2">&quot;y&quot;</span><span class="p">,</span><span class="s2">&quot;z&quot;</span><span class="p">]],</span>
+           <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Linearly combined BPTs&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time (s)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Amplitude (a.u.)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([], [])
+</pre></div>
+</div>
+<img alt="_images/3e572914e5f5cf156371fa57e9612ad3d94e3261266c3be2989213ecb858c570.png" src="_images/3e572914e5f5cf156371fa57e9612ad3d94e3261266c3be2989213ecb858c570.png" />
+</div>
+</div>
+<p>To evaluate how well they match, we can compare the dBCG to BPT-dBCG on each axis and compute the Pearson correlation coefficient between the two. That’s exactly what the plotting function <code class="docutils literal notranslate"><span class="pre">plot_dbcg</span></code> does:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Update plot params to remove the y-axis line</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;axes.spines.left&#39;</span><span class="p">:</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="p">})</span>
+<span class="c1"># Plot dBCG and BPT-dBCG</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">plot_dbcg</span><span class="p">(</span><span class="n">bpt</span><span class="p">,</span> <span class="n">accel_d</span><span class="p">,</span> <span class="n">tr</span><span class="o">=</span><span class="n">tr</span><span class="p">,</span> <span class="n">t_end</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;BPT dBCG comparison&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/0618a6010b29c463f1ab2f169cb4aeab269af9b439d5955f89838e3313e56178.png" src="_images/0618a6010b29c463f1ab2f169cb4aeab269af9b439d5955f89838e3313e56178.png" />
+</div>
+</div>
+</div>
+<div class="section" id="load-physio-data">
+<h2>Load physio data<a class="headerlink" href="#load-physio-data" title="Permalink to this heading">#</a></h2>
+<p>The ECG and PPG data is also saved to a text file. The data has about 30 extra seconds (see <a class="reference external" href="https://cni.stanford.edu/wiki/MR_Hardware#Physio_monitoring">this reference</a>), so we need to chop that off. We’ll use the function <code class="docutils literal notranslate"><span class="pre">get_physio_waveforms</span></code>, with helper functions <code class="docutils literal notranslate"><span class="pre">load_physio</span></code> and <code class="docutils literal notranslate"><span class="pre">crop_physio</span></code>. We used vector ECG with two channels, and we plot just the first one.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_physio</span><span class="p">(</span><span class="n">inpdir</span><span class="p">,</span> <span class="n">ftype</span><span class="o">=</span><span class="s2">&quot;PPG&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Load physio waveform from text file &#39;&#39;&#39;</span>
+    <span class="c1"># Check for text file in the input directory that starts with appropriate name</span>
+    <span class="n">physio_fnames</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">inpdir</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">ftype</span><span class="p">)]</span>
+    <span class="n">physio</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">physio_fnames</span><span class="p">)):</span>
+        <span class="n">physio</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">inpdir</span><span class="p">,</span><span class="n">physio_fnames</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
+                    <span class="n">comments</span><span class="o">=</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">unpack</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">physio</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">crop_physio</span><span class="p">(</span><span class="n">phys</span><span class="p">,</span> <span class="n">bpt_len</span><span class="p">,</span> <span class="n">tr_phys</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">from_front</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Crop first ~30s of physio waveform &#39;&#39;&#39;</span>
+    <span class="n">phys_len</span> <span class="o">=</span> <span class="n">phys</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">tr_phys</span>
+    <span class="n">phys_diff</span> <span class="o">=</span> <span class="n">phys_len</span> <span class="o">-</span> <span class="n">bpt_len</span> <span class="c1"># seconds</span>
+    <span class="n">phys_crop</span> <span class="o">=</span> <span class="n">phys</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">phys_diff</span><span class="o">//</span><span class="n">tr_phys</span><span class="p">):]</span>
+    <span class="k">return</span> <span class="n">phys_crop</span>
+
+<span class="k">def</span> <span class="nf">get_physio_waveforms</span><span class="p">(</span><span class="n">inpdir</span><span class="p">,</span> <span class="n">bpt_len</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">tr_ppg</span><span class="o">=</span><span class="mf">10e-3</span><span class="p">,</span> <span class="n">tr_ecg</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span>
+                         <span class="n">load_ppg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">load_ecg</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Load ECG and PPG data based on input directory. First ECG by default &#39;&#39;&#39;</span>
+    <span class="n">phys_waveforms</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># Order is [ecg, ppg]</span>
+    <span class="k">if</span> <span class="n">load_ecg</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">ecg</span> <span class="o">=</span> <span class="n">load_physio</span><span class="p">(</span><span class="n">inpdir</span><span class="p">,</span> <span class="n">ftype</span><span class="o">=</span><span class="s2">&quot;ECG&quot;</span><span class="p">)[</span><span class="n">index</span><span class="p">,:]</span> <span class="c1"># First ECG</span>
+        <span class="n">ecg_crop</span> <span class="o">=</span> <span class="n">crop_physio</span><span class="p">(</span><span class="n">ecg</span><span class="p">,</span> <span class="n">bpt_len</span><span class="p">,</span> <span class="n">tr_phys</span><span class="o">=</span><span class="n">tr_ecg</span><span class="p">)</span>
+        <span class="n">phys_waveforms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ecg_crop</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">load_ppg</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">ppg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">load_physio</span><span class="p">(</span><span class="n">inpdir</span><span class="p">,</span> <span class="n">ftype</span><span class="o">=</span><span class="s2">&quot;PPG&quot;</span><span class="p">))</span>
+        <span class="n">ppg_crop</span> <span class="o">=</span> <span class="n">crop_physio</span><span class="p">(</span><span class="n">ppg</span><span class="p">,</span> <span class="n">bpt_len</span><span class="p">,</span> <span class="n">tr_phys</span><span class="o">=</span><span class="n">tr_ppg</span><span class="p">)</span>
+        <span class="n">phys_waveforms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ppg_crop</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">phys_waveforms</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For visualization, we’ll normalize the PPG and ECG signals, i.e. subtract the mean and divide by the variance. Then, we show each of them with a vertical shift so that they don’t overlap on the plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load peripherals</span>
+<span class="p">[</span><span class="n">ecg</span><span class="p">,</span> <span class="n">ppg</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_physio_waveforms</span><span class="p">(</span><span class="n">inpdir</span><span class="p">,</span>
+                                  <span class="n">bpt_len</span><span class="o">=</span><span class="n">bpt</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">tr</span><span class="p">,</span>
+                                  <span class="n">index</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Plot</span>
+<span class="c1"># Get t axis</span>
+<span class="n">t_ecg</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">get_t_axis</span><span class="p">(</span><span class="n">ecg</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">delta_t</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
+<span class="n">t_ppg</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">get_t_axis</span><span class="p">(</span><span class="n">ppg</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">delta_t</span><span class="o">=</span><span class="mf">10e-3</span><span class="p">)</span>
+<span class="c1"># Plot normalized ECG and PPG with vertical shift</span>
+<span class="n">shift</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_ppg</span><span class="p">,</span> <span class="n">proc</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">ppg</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_ecg</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">proc</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">ecg</span><span class="p">)</span> <span class="o">+</span> <span class="n">shift</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;PPG&quot;</span><span class="p">,</span> <span class="s2">&quot;ECG&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time (s)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Amplitude (a.u.)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;MRI Peripheral Data&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;MRI Peripheral Data&#39;)
+</pre></div>
+</div>
+<img alt="_images/9294d3a18e6ccd15c5c5cac2e5ec8a1e1ea71066f349d7aa31242db5b46e0b12.png" src="_images/9294d3a18e6ccd15c5c5cac2e5ec8a1e1ea71066f349d7aa31242db5b46e0b12.png" />
+</div>
+</div>
+</div>
+<div class="section" id="putting-it-all-together">
+<h2>Putting it all together<a class="headerlink" href="#putting-it-all-together" title="Permalink to this heading">#</a></h2>
+<p>Now that we have all the pieces in place, we can load the data and generate plots. The cell below shows the plots for a single subject. We load the data with the <code class="docutils literal notranslate"><span class="pre">load_data</span></code> function, then plot three figures.</p>
+<p>The first figure compares BPT to PT for a few hand-selected coils. You can change these indices (<code class="docutils literal notranslate"><span class="pre">c_mat</span></code>) to plot other coils. The first row indexes into the PT, while the second row indexes into the BPT.</p>
+<p>The second figure plots BPT vs peripherals and the accelerometer displacement.</p>
+<p>The third figure compares the linearly combined BPT (BPT-dBCG) to dBCG on each accelerometer axis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot loop</span>
+<span class="n">inpdirs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;data/subj1&quot;</span><span class="p">]</span>
+
+<span class="n">ecg_indices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ecg_scales</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">cutoff</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">inpdir</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">inpdirs</span><span class="p">):</span>
+    <span class="c1"># Choose appropriate coils</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">c_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">14</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">],[</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span> <span class="o">+</span> <span class="mi">16</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span><span class="mi">24</span><span class="p">]</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">c_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">14</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">12</span><span class="p">],[</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">]])</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span><span class="mi">12</span><span class="p">]</span>
+
+    <span class="c1"># Load data</span>
+    <span class="n">bpt</span><span class="p">,</span> <span class="n">ecg</span><span class="p">,</span> <span class="n">ppg</span><span class="p">,</span> <span class="n">accel_d</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">inpdir</span><span class="p">,</span> <span class="n">ecg_indices</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cutoff</span><span class="p">)</span>
+
+    <span class="c1"># Plot bpt vs pt</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">plot_bpt_pt</span><span class="p">(</span><span class="n">bpt</span><span class="p">,</span> <span class="n">c_mat</span><span class="p">,</span>
+                     <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Raw BPT vs PT Magnitude, Subj </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="c1"># Plot BPT vs accel</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">plot_bpt_accel</span><span class="p">(</span><span class="n">bpt</span><span class="p">,</span> <span class="n">accel_d</span><span class="p">,</span> <span class="n">ecg</span><span class="p">,</span> <span class="n">ppg</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">shift</span><span class="o">=-</span><span class="mi">8</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span>
+                        <span class="n">ecg_scale</span><span class="o">=</span><span class="n">ecg_scales</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;BPT vs peripherals, Subj </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+
+    <span class="c1"># Plot regressed BPT vs accel</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">plot_dbcg</span><span class="p">(</span><span class="n">bpt</span><span class="p">,</span> <span class="n">accel_d</span><span class="p">,</span> <span class="n">tr</span><span class="o">=</span><span class="mf">8.7e-3</span><span class="p">,</span> <span class="n">t_end</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                   <span class="n">title</span><span class="o">=</span><span class="s2">&quot;BPT vs dBCG, Subj </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/8c0a22a1282fda19f0bd126fef1640d36506c94444b252f08904437da9593d2d.png" src="_images/8c0a22a1282fda19f0bd126fef1640d36506c94444b252f08904437da9593d2d.png" />
+<img alt="_images/1972cea8ab83451f4467801a1eb631f196f2171d8e4382e51cc881678178a7e4.png" src="_images/1972cea8ab83451f4467801a1eb631f196f2171d8e4382e51cc881678178a7e4.png" />
+<img alt="_images/f063841430bc4944cf496117426f4c561e0a2f9d7b38439d334f0546f673e392.png" src="_images/f063841430bc4944cf496117426f4c561e0a2f9d7b38439d334f0546f673e392.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="conclusion">
+<h1>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h1>
+<p>I hope you enjoyed this demo! Please feel free to reach out with questions or comments to me at <a class="reference external" href="mailto:sanand&#37;&#52;&#48;berkeley&#46;edu">sanand<span>&#64;</span>berkeley<span>&#46;</span>edu</a>.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+            </article>
+            
+
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   <strong>
+    Wireless In-Bore Ballistocardiography with 2.4GHz Beat Pilot Tone (BPT)
+   </strong>
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#font-color-cinnamon-what-is-the-bpt-font">
+   <font color="cinnamon">
+    What is the BPT?
+   </font>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-slateblue-background-the-pilot-tone-pt-font">
+     <font color="slateblue">
+      Background: the Pilot Tone (PT)
+     </font>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-slateblue-sensing-with-a-shorter-wavelength-font">
+     <font color="slateblue">
+      Sensing with a shorter wavelength
+     </font>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#font-color-slateblue-how-does-the-bpt-work-font">
+     <font color="slateblue">
+      How does the BPT work?
+     </font>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#processing-the-data">
+   Processing the data
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-and-import-packages">
+     Install and import packages
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extract-all-data-and-generate-plots">
+     Extract all data and generate plots
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extract-the-bpt">
+     Extract the BPT
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extract-accelerometer-data">
+     Extract accelerometer data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-regression-to-compare-bpt-and-dbcg">
+     Linear regression to compare BPT and dBCG
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-physio-data">
+     Load physio data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#putting-it-all-together">
+     Putting it all together
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright 2022.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+Last updated on None.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </div>
+        </footer>
+        
+
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  </body>
+</html>
