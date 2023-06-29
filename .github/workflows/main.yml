@@ -40,4 +40,4 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3.6.1
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./content/_build/_page/bpt_bcg/html/bpt_bcg.html
+        publish_dir: ./content/_build/_page/bpt_bcg/html/
