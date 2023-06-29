@@ -3,4 +3,4 @@
 .jupyter-server-log.txt
 .jupyter/
 .local/
-content/.ipynb_checkpoints/
+content/.ipynb_checkpoints/ 
