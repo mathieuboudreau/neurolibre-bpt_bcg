@@ -2,7 +2,7 @@
 git clone https://github.com/mikgroup/sigpy.git
 cd sigpy; pip install -e .; cd ..
 
-git clone https://github.com/mikgroup/bpt_mrpub.git
+git clone https://github.com/mikgroup/bpt_mrpub.git content/bpt_mrpub
 
 pwd
 ls bpt_mrpub
