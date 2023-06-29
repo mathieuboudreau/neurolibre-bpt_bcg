@@ -17,8 +17,9 @@ repository:
 only_build_toc_files: true
 
 # Binder link settings
-use_binder_button                : true  # If 'true', add a binder button for interactive links
-binderhub_url                    : "http://test.conp.cloud"  # The URL for your BinderHub. If no URL, use ""
+launch_buttons:
+  binderhub_url: "http://test.conp.cloud"  # The URL for your BinderHub (e.g., https://mybinder.org)
+  notebook_interface: "jupyterlab"  # or "classic"
 
 execute:
   timeout: 600
