@@ -7,5 +7,4 @@ git clone https://github.com/mikgroup/bpt_mrpub.git
 pwd
 ls bpt_mrpub
 
-
-cp -r ../../data/bpt-bcg-neurolibre/data/ data
+repo2data -r binder/data_requirement.txt
