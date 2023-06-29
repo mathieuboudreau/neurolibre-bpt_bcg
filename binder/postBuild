@@ -2,4 +2,11 @@
 git clone https://github.com/mikgroup/sigpy.git
 cd sigpy; pip install -e .; cd ..
 
+git clone https://github.com/mikgroup/bpt_mrpub.git
+
+ls
+pwd
+ls ../
+ls ../../
+
 cp -r ../../data/bpt-bcg-neurolibre/data/ data
