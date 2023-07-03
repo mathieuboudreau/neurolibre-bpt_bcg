@@ -4,8 +4,5 @@ cd sigpy; pip install -e .; cd ..
 
 git clone https://github.com/mikgroup/bpt_mrpub.git content/bpt_mrpub
 
-pwd
-ls bpt_mrpub
-
 repo2data -r binder/data_requirement.json
 cp -r data/bpt_bcg-neurolibre/data content/data
